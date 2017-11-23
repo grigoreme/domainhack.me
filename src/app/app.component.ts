@@ -11,7 +11,20 @@ export class AppComponent {
   constructor() { }
 
   updateDomain(domain) {
-    console.log(domain);
+    const matches = this.extractMatches(domain);
   }
-  
+
+  extractMatches(userDomain) {
+    const domains = require('../assets/domains.json');
+    return Object.keys(domains)
+      .filter((name) => userDomain.indexOf(name) !== -1)
+      .map((name) => {
+        const sponsor = domains[name].sponsor;
+        return {
+          name,
+          sponsor
+        };
+      });
+  }
+
 }
