@@ -11,62 +11,33 @@ export class AppComponent {
   constructor() { }
 
   /**
-   * Update avalaible domains
    * @param {String} userInput
    */
   updateDomain(userInput) {
-    const domains = this.extractMatches(userInput);
-
-    this.domains = this.createDomainName(domains, userInput);
-  }
-
-  /**
-   * Create valid domain names
-   * @param {Any[]} availableDomains
-   * @param {String} userInput
-   * @returns {Object[]}
-   */
-  private createDomainName(availableDomains: any[], userInput: string) {
-    return availableDomains.map((avalaibleDomain) => {
-      const domainName = avalaibleDomain.domainName;
-
-      if (userInput.indexOf(domainName) !== 0) {
-        return Object.assign(
-          {
-            result: userInput.replace(new RegExp(domainName), `.${domainName}/`),
-          },
-          avalaibleDomain
-        );
-      } else {
-        // Complete with xxx if string starts with valid domain extension
-        const regex = `.*(${domainName}?).*`;
-        return Object.assign(
-          {
-            result: userInput.replace(new RegExp(regex), `xxx.${domainName}/`),
-          },
-          avalaibleDomain
-        );
-      }
+    this.requestDomains(userInput).then((response: any[]) => {
+      this.domains = response;
     });
-
   }
 
   /**
-   * Getting list of avalaible domains
    * @param {String} userInput
-   * @returns {Object[]}
    */
-  private extractMatches(userInput: string) {
-    const domains = require('../assets/domains.json');
-    return Object.keys(domains)
-      .filter((domainName) => userInput.indexOf(domainName) !== -1)
-      .map((domainName) => {
-        const sponsor = domains[domainName].sponsor;
-        return {
-          domainName,
-          sponsor
-        };
-      });
+  requestDomains(userInput) {
+    const http = require('http');
+    const option = {
+      hostname: 'localhost',
+      path: '/' + userInput,
+      port: 8000,
+      method: 'GET'
+    };
+
+    return new Promise((resolve, reject) => {
+      http.request(option, (resp) => {
+        resp.on('data', (chunk) => {
+          resolve(JSON.parse(chunk));
+        });
+      }).end();
+    });
   }
 
 }
