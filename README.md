@@ -1,4 +1,5 @@
 # Domainhack.Me
+A domainhack is an unconventional domain name that combines domain levels, especially the Top-Level Domain (TLD), to spell out the full "name" or title of the domain. Domainhacks offer the ability to produce extremely short domain names.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.4.
 
