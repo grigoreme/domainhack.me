@@ -1,8 +1,7 @@
 <input #domain (keyup)="updateDomain(domain.value)">
-{{domain.value}}
 
-<ul>
+<ol>
   <li *ngFor="let _domain of domains">
-    {{_domain}}
+    {{_domain.result}}
   </li>
-</ul>
+</ol>
