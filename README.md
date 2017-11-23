@@ -3,8 +3,14 @@ A domainhack is an unconventional domain name that combines domain levels, espec
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.4.
 
+## How to start app
+
+Go to root folder and run `npm install` for installing dependencies.
+Run `node server.js` then open another terminal tab and run `ng serve` for a dev server.
+If you want to get build optimized production version just run `ng serve --aot` or `ng build --prod`.
+
 ## Development server
-Run `node server.js` then open another terminal tab and run `ng serve` for a dev server. 
+
 Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
