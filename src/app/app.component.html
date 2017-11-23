@@ -1,7 +1,7 @@
-<input #domain (keyup)="updateDomain(domain.value)">
+<input #userInput (keyup)="updateDomain(userInput.value)">
 
 <ol>
-  <li *ngFor="let _domain of domains">
-    {{_domain.result}}
+  <li *ngFor="let domain of domains">
+    {{domain.result}} || {{domain.sponsor}}
   </li>
 </ol>

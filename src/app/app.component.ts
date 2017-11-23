@@ -10,13 +10,23 @@ export class AppComponent {
 
   constructor() { }
 
+  /**
+   * Update avalaible domains
+   * @param {String} userInput
+   */
   updateDomain(userInput) {
     const domains = this.extractMatches(userInput);
 
     this.domains = this.createDomainName(domains, userInput);
   }
 
-  createDomainName(availableDomains: any[], userInput: string) {
+  /**
+   * Create valid domain names
+   * @param {Any[]} availableDomains
+   * @param {String} userInput
+   * @returns {Object[]}
+   */
+  private createDomainName(availableDomains: any[], userInput: string) {
     return availableDomains.map((avalaibleDomain) => {
       const domainName = avalaibleDomain.domainName;
 
@@ -41,10 +51,15 @@ export class AppComponent {
 
   }
 
-  extractMatches(userDomain) {
+  /**
+   * Getting list of avalaible domains
+   * @param {String} userInput
+   * @returns {Object[]}
+   */
+  private extractMatches(userInput: string) {
     const domains = require('../assets/domains.json');
     return Object.keys(domains)
-      .filter((domainName) => userDomain.indexOf(domainName) !== -1)
+      .filter((domainName) => userInput.indexOf(domainName) !== -1)
       .map((domainName) => {
         const sponsor = domains[domainName].sponsor;
         return {
